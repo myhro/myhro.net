@@ -1,1 +1,3 @@
 git+https://github.com/django/django.git@1.7a2#egg=Django
+dj-database-url==0.2.2
+psycopg2==2.5.2
