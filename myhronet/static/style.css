@@ -1,0 +1,24 @@
+a:link {
+	color:#c70a00;
+	text-decoration:underline;
+}
+
+a:visited {
+	color: #66023c;
+	text-decoration: underline;
+}
+
+body {
+	font-family: "Verdana";
+	font-size: 10pt;
+	left: 5%;
+	position: absolute;
+	text-align: center;
+	top: 25%;
+	width: 90%;
+}
+
+h1 {
+	color: #E52B50;
+	font-family: "Verdana";
+}
