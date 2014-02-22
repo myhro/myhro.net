@@ -6,6 +6,11 @@ from .models import URL
 
 
 class URLForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(URLForm, self).__init__(*args, **kwargs)
+        self.fields['longurl'].label = ''
+        self.fields['longurl'].widget = forms.TextInput(attrs={'size': '50'})
+
     def clean(self, *args, **kwargs):
         cleaned_data = super(URLForm, self).clean(*args, **kwargs)
         if not re.match('^https?://.*\.[a-z]{2,}', cleaned_data['longurl']):
