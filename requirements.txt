@@ -1,4 +1,7 @@
-git+https://github.com/django/django.git@1.7a2
+# Django 1.7a2:
+https://www.djangoproject.com/m/releases/1.7/Django-1.7a2.tar.gz
 dj-database-url==0.2.2
-git+https://github.com/kennethreitz/dj-static.git@e79582483a976c76511244b3f236f7c68991e1ae # dj-static==0.0.6
+# dj-static==0.0.6:
+git+https://github.com/kennethreitz/dj-static.git@e79582483a976c76511244b3f236f7c68991e1ae
+gunicorn==18.0
 psycopg2==2.5.2
