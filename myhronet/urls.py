@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'myhronet.views.home', name='home'),
+    url(r'^(?P<hashcode>[-\w]+)$', 'myhronet.views.retrieve', name='retrieve'),
 )
