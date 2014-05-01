@@ -22,6 +22,15 @@ class URLFormTestCase(test.TestCase):
             form.save()
         self.assertEqual(URL.objects.count(), num_urls + 1)
 
+    def test_properly_saved_url(self):
+        new_url = 'http://google.com'
+        num_urls = URL.objects.count()
+        form = URLForm(data={'longurl': new_url})
+        form.instance.ip = '127.0.0.1'
+        if form.is_valid():
+            form.save()
+        self.assertEqual(URL.objects.last().longurl, new_url)
+
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
         form = URLForm(data={'longurl': 'http://google.com'})
