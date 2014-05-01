@@ -11,7 +11,7 @@ class URL(models.Model):
     data = models.DateTimeField(auto_now_add=True, null=True)
 
     def short_url(self, request):
-        return ''.join([request.META['wsgi.url_scheme'], '://', request.get_host(), '/', self.hashcode])
+        return ''.join([request.scheme, '://', request.get_host(), '/', self.hashcode])
 
     def __unicode__(self):
         return ' - '.join([self.hashcode, self.longurl])
