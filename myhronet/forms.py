@@ -6,16 +6,11 @@ from .models import URL
 
 
 class URLForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(URLForm, self).__init__(*args, **kwargs)
-        self.fields['longurl'].label = ''
-        self.fields['longurl'].widget = forms.TextInput(attrs={'size': '50'})
-
-    def clean(self, *args, **kwargs):
+    def clean_longurl(self, *args, **kwargs):
         cleaned_data = super(URLForm, self).clean(*args, **kwargs)
         if not re.match('^https?://.*\.[a-z]{2,}', cleaned_data['longurl']):
             raise forms.ValidationError('URL inválida.')
-        return cleaned_data
+        return cleaned_data['longurl']
 
     def save(self, *args, **kwargs):
         if URL.objects.count():
@@ -35,3 +30,9 @@ class URLForm(forms.ModelForm):
     class Meta:
         model = URL
         fields = ('longurl',)
+        labels = {
+            'longurl': '',
+        }
+        widgets = {
+            'longurl': forms.TextInput(attrs={'size': '50'}),
+        }
