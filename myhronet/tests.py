@@ -8,7 +8,7 @@ from .models import URL
 class URLFormTestCase(test.TestCase):
     def test_new_url(self):
         num_urls = URL.objects.count()
-        form = URLForm(data={'longurl':'http://google.com'})
+        form = URLForm(data={'longurl': 'http://google.com'})
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
@@ -16,11 +16,11 @@ class URLFormTestCase(test.TestCase):
 
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
-        form = URLForm(data={'longurl':'http://google.com'})
+        form = URLForm(data={'longurl': 'http://google.com'})
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
-        form = URLForm(data={'longurl':'http://google.com'})
+        form = URLForm(data={'longurl': 'http://google.com'})
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
@@ -28,7 +28,7 @@ class URLFormTestCase(test.TestCase):
 
     def test_invalid_url(self):
         num_urls = URL.objects.count()
-        form = URLForm(data={'longurl':'ftp://cdrom.com'})
+        form = URLForm(data={'longurl': 'ftp://cdrom.com'})
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()

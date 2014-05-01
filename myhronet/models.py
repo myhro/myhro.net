@@ -4,11 +4,11 @@ from django.db import models
 
 
 class URL(models.Model):
-    hashcode = models.CharField(max_length=10, unique=True, db_index=True)
-    longurl = models.CharField(max_length=1024, unique=True, db_index=True)
+    hashcode = models.CharField(max_length=10, unique=True, db_index=True, null=True)
+    longurl = models.CharField(max_length=1024, unique=True, db_index=True, null=True)
     views = models.IntegerField(default=0)
-    ip = models.GenericIPAddressField()
-    data = models.DateTimeField(auto_now_add=True)
+    ip = models.GenericIPAddressField(null=True)
+    data = models.DateTimeField(auto_now_add=True, null=True)
 
     def short_url(self, request):
         return ''.join([request.META['wsgi.url_scheme'], '://', request.get_host(), '/', self.hashcode])
