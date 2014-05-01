@@ -37,6 +37,7 @@ class URLFormTestCase(test.TestCase):
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
+        self.assertEqual(URL.objects.count(), num_urls + 1)
         form = URLForm(data={'longurl': 'http://google.com'})
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
