@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import string
 import re
 from django import forms
 from django.utils.translation import ugettext as _
@@ -13,21 +12,6 @@ class URLForm(forms.ModelForm):
         if not re.match('^https?://.*\.[a-z]{2,}', cleaned_data['longurl']):
             raise forms.ValidationError(_('Invalid URL.'))
         return cleaned_data['longurl']
-
-    def save(self, *args, **kwargs):
-        if URL.objects.count():
-            last = URL.objects.latest('id').pk + 1
-            alphabet = string.digits + string.ascii_lowercase
-            base36 = ''
-            if last < len(alphabet):
-                self.instance.hashcode = alphabet[last]
-            while last != 0:
-                last, i = divmod(last, len(alphabet))
-                base36 = alphabet[i] + base36
-            self.instance.hashcode = base36
-        else:
-            self.instance.hashcode = '1'
-        super(URLForm, self).save(*args, **kwargs)
 
     class Meta:
         model = URL
