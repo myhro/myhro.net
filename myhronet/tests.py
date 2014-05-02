@@ -75,6 +75,14 @@ class ViewsTestCase(test.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'done.html')
 
+    def test_stats_valid_url(self):
+        response = self.client.post('/', self.post_valid_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'done.html')
+        response = self.client.get('/1-')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'stats.html')
+
     def test_valid_shorturl(self):
         response = self.client.post('/', self.post_valid_url)
         self.assertEqual(response.status_code, 200)
