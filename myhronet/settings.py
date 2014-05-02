@@ -10,7 +10,9 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import string
 import sys
+from django.utils.crypto import get_random_string
 import dj_database_url
 
 
@@ -76,6 +78,9 @@ if 'test' in sys.argv:
             'NAME': ':memory:',
         }
     }
+    if not SECRET_KEY:
+        chars = string.ascii_lowercase + string.digits + '!@#$%^&*(-_=+)'
+        SECRET_KEY = get_random_string(50, chars)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
