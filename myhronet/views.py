@@ -28,12 +28,17 @@ def home(request):
         new_size = len(new_url)
         if new_size < orig_size:
             diff_chars = orig_size - new_size
-            diff_percent = int(round(100 - (100 * (new_size / float(orig_size)))))
+            diff_percent = int(
+                round(100 - (100 * (new_size / float(orig_size))))
+            )
         elif new_size > orig_size:
             diff_chars = new_size - orig_size
-            diff_percent = int(round((new_size * 100 / float(orig_size)) - 100))
+            diff_percent = int(
+                round((new_size * 100 / float(orig_size)) - 100)
+            )
         return render(request, 'done.html', locals())
     return render(request, 'home.html', locals())
+
 
 def retrieve(request, hashcode):
     stats = False
