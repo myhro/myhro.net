@@ -10,6 +10,9 @@ from .wsgi import application
 
 
 class URLFormTestCase(test.TestCase):
+    def setUp(self):
+        self.valid_url = {'longurl': 'http://google.com'}
+
     def test_invalid_url(self):
         num_urls = URL.objects.count()
         form = URLForm(data={'longurl': 'ftp://cdrom.com'})
@@ -20,7 +23,7 @@ class URLFormTestCase(test.TestCase):
 
     def test_new_url(self):
         num_urls = URL.objects.count()
-        form = URLForm(data={'longurl': 'http://google.com'})
+        form = URLForm(data=self.valid_url)
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
@@ -38,12 +41,12 @@ class URLFormTestCase(test.TestCase):
 
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
-        form = URLForm(data={'longurl': 'http://google.com'})
+        form = URLForm(data=self.valid_url)
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
         self.assertEqual(URL.objects.count(), num_urls + 1)
-        form = URLForm(data={'longurl': 'http://google.com'})
+        form = URLForm(data=self.valid_url)
         form.instance.ip = '127.0.0.1'
         if form.is_valid():
             form.save()
