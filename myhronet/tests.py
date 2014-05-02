@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import random
+import string
 from django import test
 from .forms import URLForm
 from .models import URL
@@ -60,6 +62,17 @@ class ViewsTestCase(test.TestCase):
     def test_invalid_shorturl(self):
         response = self.client.get('/dontexist')
         self.assertEqual(response.status_code, 404)
+
+    def test_multiple_urls_to_check_base36_conversion(self):
+        for i in xrange(36):
+            random_domain = ''.join(
+                [random.choice(string.ascii_lowercase) for x in xrange(10)]
+            )
+            random_url = 'http://{domain}.com/'.format(domain=random_domain)
+            response = self.client.post('/', {'longurl': random_url})
+            self.assertContains(response, random_url)
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'done.html')
 
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
