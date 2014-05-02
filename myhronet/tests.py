@@ -3,8 +3,10 @@
 import random
 import string
 from django import test
+from django.core.servers.basehttp import get_internal_wsgi_application
 from .forms import URLForm
 from .models import URL
+from .wsgi import application
 
 
 class URLFormTestCase(test.TestCase):
@@ -109,3 +111,9 @@ class ViewsTestCase(test.TestCase):
         self.assertContains(response, self.post_valid_url['longurl'])
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'done.html')
+
+
+class WSGITestCase(test.TestCase):
+    def test_wsgi_file(self):
+        app = get_internal_wsgi_application()
+        self.assertTrue(app is application)
