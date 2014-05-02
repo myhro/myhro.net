@@ -56,7 +56,7 @@ class ViewsTestCase(test.TestCase):
     def test_invalid_longurl(self):
         response = self.client.post('/', {'longurl': 'not.a.valid/url'})
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'longurl', u'URL inválida.')
+        self.assertFormError(response, 'form', 'longurl', 'Invalid URL.')
         self.assertTemplateUsed(response, 'home.html')
 
     def test_invalid_shorturl(self):
