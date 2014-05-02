@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import string
 import re
 from django import forms
 from .models import URL
@@ -15,7 +16,7 @@ class URLForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         if URL.objects.count():
             last = URL.objects.latest('id').pk + 1
-            alphabet='0123456789abcdefghijklmnopqrstuvwxyz'
+            alphabet = string.digits + string.ascii_lowercase
             base36 = ''
             if last < len(alphabet):
                 self.instance.hashcode = alphabet[last]
