@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block 'content' %}
-<p>URL original: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
-<p>URL encurtada: <a href="{{ new_url }}">{{ new_url }}</a></p>
+<p>Original URL: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
+<p>Shortened URL: <a href="{{ new_url }}">{{ new_url }}</a></p>
 <p>
-    Original: {{ orig_size }} caracteres.<br />
-    Encurtada: {{ new_size }} caracteres.<br />
+    Original: {{ orig_size }} characters.<br />
+    Shortened: {{ new_size }} characters.<br />
     {% if new_size < orig_size %}
-        {{ diff_chars }} caracteres menor. {{ diff_percent }}% mais curta.
+        {{ diff_chars }} less characters. {{ diff_percent }}% shorter.
     {% elif new_size > orig_size %}
-        {{ diff_chars }} caracteres maior. {{ diff_percent }}% mais longa.
+        {{ diff_chars }} more characters. {{ diff_percent }}% longer.
     {% else %}
-        Ambas possuem o mesmo número de caracteres.
+        Both have the same length.
     {% endif %}
 </p>
 {% endblock %}

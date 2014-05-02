@@ -76,14 +76,14 @@ class ViewsTestCase(test.TestCase):
 
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
-        # Salvando
+        # Save a new URL
         response = self.client.post('/', self.post_valid_url)
         self.assertEqual(URL.objects.count(), num_urls + 1)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'done.html')
-        # Carregando
+        # Load an existing URL
         response = self.client.post('/', self.post_valid_url)
-        # Não deve salvar uma nova URL na segunda tentativa.
+        # It shouldn't save a new URL on the second try
         self.assertEqual(URL.objects.count(), num_urls + 1)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'done.html')

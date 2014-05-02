@@ -15,13 +15,13 @@ def home(request):
             new_url = form.instance.short_url(request)
             orig_url = form.instance.longurl
         elif 'longurl' in form.errors:
-            # Verifica se o erro foi causado por uma URL repetida...
+            # Check if the error was caused by a repeated URL...
             url_db = URL.objects.filter(longurl=form.instance.longurl).first()
             if url_db:
                 hashcode = url_db.hashcode
                 new_url = url_db.short_url(request)
                 orig_url = url_db.longurl
-            # Ou simplesmente inválida.
+            # Or it is just invalid.
             else:
                 return render(request, 'home.html', locals())
         orig_size = len(orig_url)
