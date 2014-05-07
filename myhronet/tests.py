@@ -69,7 +69,9 @@ class ViewsTestCase(test.TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_multiple_urls_to_check_base36_conversion(self):
-        for i in xrange(36):
+        alphabet = string.digits[1:] + string.ascii_lowercase
+        self.assertEqual(len(alphabet), 35)
+        for i, expected_hashcode in zip(xrange(35), alphabet):
             random_domain = ''.join(
                 [random.choice(string.ascii_lowercase) for x in xrange(10)]
             )
@@ -78,6 +80,9 @@ class ViewsTestCase(test.TestCase):
             self.assertContains(response, random_url)
             self.assertEqual(response.status_code, 200)
             self.assertTemplateUsed(response, 'done.html')
+            last_url = URL.objects.last()
+            if last_url:
+                self.assertEqual(last_url.hashcode, expected_hashcode)
 
     def test_same_url_twice(self):
         num_urls = URL.objects.count()
