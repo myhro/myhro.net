@@ -4,6 +4,13 @@ import string
 from django.db import models
 
 
+class Blacklist(models.Model):
+    domain = models.CharField(max_length=255, unique=True, null=True)
+
+    def __unicode__(self):
+        return self.domain
+
+
 class URL(models.Model):
     hashcode = models.CharField(max_length=10, unique=True,
                                 db_index=True, null=True)

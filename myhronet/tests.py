@@ -5,7 +5,7 @@ import string
 from django import test
 from django.core.servers.basehttp import get_internal_wsgi_application
 from .forms import URLForm
-from .models import URL
+from .models import Blacklist, URL
 from .wsgi import application
 
 
@@ -57,6 +57,15 @@ class ViewsTestCase(test.TestCase):
     def setUp(self):
         self.client = test.client.Client()
         self.post_valid_url = {'longurl': 'http://google.com'}
+
+    def test_forbidden_longurl(self):
+        forbidden_domain = 'forbidden-domain.com'
+        forbidden_url = {'longurl': 'http://{0}/'.format(forbidden_domain)}
+        Blacklist(domain=forbidden_domain).save()
+        response = self.client.post('/', forbidden_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'form', 'longurl', 'Forbidden URL.')
+        self.assertTemplateUsed(response, 'home.html')
 
     def test_invalid_longurl(self):
         response = self.client.post('/', {'longurl': 'not.a.valid/url'})
