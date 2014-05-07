@@ -78,9 +78,8 @@ if 'test' in sys.argv:
             'NAME': ':memory:',
         }
     }
-    if not SECRET_KEY:
-        chars = string.ascii_lowercase + string.digits + '!@#$%^&*(-_=+)'
-        SECRET_KEY = get_random_string(50, chars)
+    chars = string.ascii_lowercase + string.digits + '!@#$%^&*(-_=+)'
+    SECRET_KEY = get_random_string(50, chars)
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
