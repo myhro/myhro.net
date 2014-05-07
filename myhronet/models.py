@@ -18,15 +18,13 @@ class URL(models.Model):
             last = URL.objects.latest('id').pk + 1
             alphabet = string.digits + string.ascii_lowercase
             base36 = ''
-            if last < len(alphabet):
-                self.hashcode = alphabet[last]
             while last != 0:
                 last, i = divmod(last, len(alphabet))
                 base36 = alphabet[i] + base36
             self.hashcode = base36
         else:
             self.hashcode = '1'
-        super(URL, self).save(*args, **kwargs)
+        return super(URL, self).save(*args, **kwargs)
 
     def short_url(self, request):
         return ''.join([
