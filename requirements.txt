@@ -1,5 +1,5 @@
 # Django 1.7:
-https://www.djangoproject.com/m/releases/1.7/Django-1.7b3.tar.gz
+https://www.djangoproject.com/m/releases/1.7/Django-1.7b4.tar.gz
 dj-database-url==0.2.2
 # dj-static==0.0.6:
 git+https://github.com/kennethreitz/dj-static.git@e79582483a976c76511244b3f236f7c68991e1ae
