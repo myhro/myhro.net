@@ -21,16 +21,17 @@ class URL(models.Model):
     data = models.DateTimeField(auto_now_add=True, null=True)
 
     def save(self, *args, **kwargs):
-        if URL.objects.count():
-            last = URL.objects.latest('id').pk + 1
-            alphabet = string.digits + string.ascii_lowercase
-            base36 = ''
-            while last != 0:
-                last, i = divmod(last, len(alphabet))
-                base36 = alphabet[i] + base36
-            self.hashcode = base36
-        else:
-            self.hashcode = '1'
+        if not self.pk:
+            if URL.objects.count():
+                last = URL.objects.latest('id').pk + 1
+                alphabet = string.digits + string.ascii_lowercase
+                base36 = ''
+                while last != 0:
+                    last, i = divmod(last, len(alphabet))
+                    base36 = alphabet[i] + base36
+                self.hashcode = base36
+            else:
+                self.hashcode = '1'
         return super(URL, self).save(*args, **kwargs)
 
     def short_url(self, request):
