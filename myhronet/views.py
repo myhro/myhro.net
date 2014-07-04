@@ -3,13 +3,14 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import URLForm
 from .models import URL
+from .utils import get_client_ip
 
 
 def home(request):
     form = URLForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            form.instance.ip = request.META['REMOTE_ADDR']
+            form.instance.ip = get_client_ip(request)
             form.save()
             hashcode = form.instance.hashcode
             new_url = form.instance.short_url(request)
