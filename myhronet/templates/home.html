@@ -3,7 +3,10 @@
 {% block "content" %}
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for error in form.longurl.errors %}
+        <h1>{{ error }}</h1>
+    {% endfor %}
+    {{ form.longurl }}
     <p><input type="submit" value="{% trans "Shorten" %}" /></p>
 </form>
 {% endblock %}

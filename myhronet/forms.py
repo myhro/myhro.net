@@ -10,10 +10,10 @@ class URLForm(forms.ModelForm):
     def clean_longurl(self, *args, **kwargs):
         cleaned_data = super(URLForm, self).clean(*args, **kwargs)
         if not re.match('^https?://.*\.[a-z]{2,}', cleaned_data['longurl']):
-            raise forms.ValidationError(_('Invalid URL.'))
+            raise forms.ValidationError(_('Invalid URL'))
         for i in Blacklist.objects.all():
             if i.domain in cleaned_data['longurl']:
-                raise forms.ValidationError(_('Forbidden URL.'))
+                raise forms.ValidationError(_('Forbidden URL'))
         return cleaned_data['longurl']
 
     class Meta:

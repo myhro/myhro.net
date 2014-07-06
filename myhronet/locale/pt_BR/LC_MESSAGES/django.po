@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-05 23:14-0300\n"
+"POT-Creation-Date: 2014-07-05 23:27-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: forms.py:13
-msgid "Invalid URL."
-msgstr "URL inválida."
+msgid "Invalid URL"
+msgstr "URL inválida"
 
 #: forms.py:16
-msgid "Forbidden URL."
-msgstr "URL não permitida."
+msgid "Forbidden URL"
+msgstr "URL não permitida"
 
 #: templates/404.html:4
 msgid "Not found"
@@ -70,7 +70,7 @@ msgstr "mais longa"
 msgid "Both have the same length"
 msgstr "Ambas tem o mesmo tamanho"
 
-#: templates/home.html:7
+#: templates/home.html:10
 msgid "Shorten"
 msgstr "Encurtar"
 
