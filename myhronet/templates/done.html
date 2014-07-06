@@ -1,16 +1,17 @@
-{% extends 'base.html' %}
-{% block 'content' %}
-<p>Original URL: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
-<p>Shortened URL: <a href="{{ new_url }}">{{ new_url }}</a></p>
+{% extends "base.html" %}
+{% load i18n %}
+{% block "content" %}
+<p>{% trans "Original URL" %}: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
+<p>{% trans "Shortened URL" %}: <a href="{{ new_url }}">{{ new_url }}</a></p>
 <p>
-    Original: {{ orig_size }} characters.<br />
-    Shortened: {{ new_size }} characters.<br />
+    {% trans "Original" %}: {{ orig_size }} {% trans "characters" %}.<br />
+    {% trans "Shortened" %}: {{ new_size }} {% trans "characters" %}.<br />
     {% if new_size < orig_size %}
-        {{ diff_chars }} less characters. {{ diff_percent }}% shorter.
+        {{ diff_chars }} {% trans "less characters" %}. {{ diff_percent }}% {% trans "shorter" %}.
     {% elif new_size > orig_size %}
-        {{ diff_chars }} more characters. {{ diff_percent }}% longer.
+        {{ diff_chars }} {% trans "more characters" %}. {{ diff_percent }}% {% trans "longer" %}.
     {% else %}
-        Both have the same length.
+        {% trans "Both have the same length" %}.
     {% endif %}
 </p>
 {% endblock %}

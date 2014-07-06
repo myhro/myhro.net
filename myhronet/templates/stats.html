@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
-{% block 'content' %}
-<p>Shortened URL: <a href="{{ short_url }}">{{ short_url }}</a></p>
-<p>Original URL: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
-<p>Number of views: {{ num_views }}.</p>
+{% extends "base.html" %}
+{% load i18n %}
+{% block "content" %}
+<p>{% trans "Shortened URL" %}: <a href="{{ short_url }}">{{ short_url }}</a></p>
+<p>{% trans "Original URL" %}: <a href="{{ orig_url }}">{{ orig_url }}</a></p>
+<p>{% trans "Number of views" %}: {{ num_views }}.</p>
 {% endblock %}
