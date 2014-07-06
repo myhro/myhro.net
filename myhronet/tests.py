@@ -64,13 +64,13 @@ class ViewsTestCase(test.TestCase):
         Blacklist(domain=forbidden_domain).save()
         response = self.client.post('/', forbidden_url)
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'longurl', 'Forbidden URL.')
+        self.assertFormError(response, 'form', 'longurl', 'Forbidden URL')
         self.assertTemplateUsed(response, 'home.html')
 
     def test_invalid_longurl(self):
         response = self.client.post('/', {'longurl': 'not.a.valid/url'})
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'longurl', 'Invalid URL.')
+        self.assertFormError(response, 'form', 'longurl', 'Invalid URL')
         self.assertTemplateUsed(response, 'home.html')
 
     def test_invalid_shorturl(self):
