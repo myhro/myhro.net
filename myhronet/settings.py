@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import os
 import string
 import sys
+from django.contrib.gis import geoip
 from django.utils.crypto import get_random_string
 import dj_database_url
 
@@ -60,6 +61,13 @@ TEMPLATE_DIRS = (
 )
 
 WSGI_APPLICATION = 'myhronet.wsgi.application'
+
+
+# Geolocation with GeoIP
+# https://docs.djangoproject.com/en/dev/ref/contrib/gis/geoip/
+
+if geoip.HAS_GEOIP:
+    GEOIP_PATH = os.path.join(PROJECT_PATH, 'GeoIP')
 
 
 # Database
