@@ -7,10 +7,14 @@ from .utils import get_client_ip
 
 
 def home(request):
-    form = URLForm(request.POST or None)
+    form = URLForm()
     if request.method == 'POST':
+        # Necessary to create a copy, as this QueryDict instance is immutable
+        data = request.POST.copy()
+        data['ip'] = get_client_ip(request)
+        form = URLForm(data)
+        valid_url = True
         if form.is_valid():
-            form.instance.ip = get_client_ip(request)
             form.save()
             hashcode = form.instance.hashcode
             new_url = form.instance.short_url(request)
@@ -24,7 +28,11 @@ def home(request):
                 orig_url = url_db.longurl
             # Or it is just invalid.
             else:
-                return render(request, 'home.html', locals())
+                valid_url = False
+        else:
+            valid_url = False
+        if not valid_url:
+            return render(request, 'home.html', locals())
         orig_size = len(orig_url)
         new_size = len(new_url)
         if new_size < orig_size:
