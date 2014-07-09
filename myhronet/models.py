@@ -11,6 +11,13 @@ class Blacklist(models.Model):
         return self.domain
 
 
+class Country(models.Model):
+    country_code = models.CharField(max_length=2, unique=True, null=True)
+
+    def __unicode__(self):
+        return self.country_code
+
+
 class URL(models.Model):
     hashcode = models.CharField(max_length=10, unique=True,
                                 db_index=True, null=True)
