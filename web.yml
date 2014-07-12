@@ -1,0 +1,14 @@
+image: "myhro/myhronet"
+name: "myhronet"
+build: "."
+command: "gunicorn --bind $GUNICORN_BIND --log-file - --workers 4 myhronet.wsgi"
+environment:
+    - "COUNTRY_BLOCK"
+    - "DATABASE_URL"
+    - "DJANGO_SECRET_KEY"
+    - "GUNICORN_BIND"
+    - "SENTRY_DSN"
+user: "gunicorn"
+volumes:
+    - "${PROJECT_ROOT}:/app"
+    - "/var/run:/var/run"
