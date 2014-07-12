@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-09 00:20-0300\n"
+"POT-Creation-Date: 2014-07-12 01:00-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,16 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: forms.py:18
-msgid "Forbidden Country"
-msgstr "País não permitido"
+msgid "Forbidden Country."
+msgstr "País não permitido."
 
 #: forms.py:24
-msgid "Invalid URL"
-msgstr "URL inválida"
+msgid "Invalid URL."
+msgstr "URL inválida."
 
 #: forms.py:27
-msgid "Forbidden URL"
-msgstr "URL não permitida"
+msgid "Forbidden URL."
+msgstr "URL não permitida."
 
 #: templates/404.html:4
 msgid "Not found"
