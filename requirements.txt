@@ -1,7 +1,6 @@
 # Django 1.7:
 https://www.djangoproject.com/m/releases/1.7/Django-1.7c1.tar.gz
-dj-database-url==0.2.2
-# dj-static==0.0.6:
-git+https://github.com/kennethreitz/dj-static.git@e79582483a976c76511244b3f236f7c68991e1ae
-gunicorn==18.0
-psycopg2==2.5.2
+dj-database-url==0.3.0
+dj-static==0.0.6
+gunicorn==19.0.0
+psycopg2==2.5.3
