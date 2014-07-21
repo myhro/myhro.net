@@ -45,6 +45,11 @@ INSTALLED_APPS = (
     'myhronet',
 )
 
+if os.environ.get('SENTRY_DSN', False):
+    INSTALLED_APPS += (
+        'raven.contrib.django.raven_compat',
+    )
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
