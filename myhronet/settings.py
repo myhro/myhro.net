@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'myhronet.wsgi.application'
 if geoip.HAS_GEOIP:
     GEOIP_PATH = os.path.join(PROJECT_PATH, 'GeoIP')
 
+COUNTRY_BLOCK = bool(os.environ.get('COUNTRY_BLOCK', False))
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -90,6 +91,7 @@ if 'test' in sys.argv:
         }
     }
     chars = string.ascii_lowercase + string.digits + '!@#$%^&*(-_=+)'
+    COUNTRY_BLOCK = True
     SECRET_KEY = get_random_string(50, chars)
 
 # Internationalization

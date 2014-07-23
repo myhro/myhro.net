@@ -11,7 +11,7 @@ from .models import Blacklist, Country, URL
 class URLForm(forms.ModelForm):
     def clean_ip(self, *args, **kwargs):
         cleaned_data = super(URLForm, self).clean(*args, **kwargs)
-        if geoip.HAS_GEOIP:
+        if geoip.HAS_GEOIP and settings.COUNTRY_BLOCK:
             g = geoip.GeoIP(settings.GEOIP_PATH)
             country = g.country_code(cleaned_data['ip'])
             if country and not Country.objects.filter(country_code=country):

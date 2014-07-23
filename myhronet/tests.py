@@ -3,6 +3,7 @@
 import random
 import string
 from django import test
+from django.conf import settings
 from django.contrib.gis import geoip
 from django.core.servers.basehttp import get_internal_wsgi_application
 from .forms import URLForm
@@ -26,7 +27,7 @@ class URLFormTestCase(test.TestCase):
         self.assertEqual(URL.objects.count(), num_urls + 1)
 
     def test_forbidden_country(self):
-        if geoip.HAS_GEOIP:
+        if geoip.HAS_GEOIP and settings.COUNTRY_BLOCK:
             num_urls = URL.objects.count()
             form = URLForm(data=self.valid_url)
             form.data['ip'] = self.us_ip
