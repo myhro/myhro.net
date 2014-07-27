@@ -1,5 +1,5 @@
 # Django 1.7:
-https://www.djangoproject.com/m/releases/1.7/Django-1.7c1.tar.gz
+https://www.djangoproject.com/m/releases/1.7/Django-1.7c2.tar.gz
 dj-database-url==0.3.0
 dj-static==0.0.6
 gunicorn==19.0.0
