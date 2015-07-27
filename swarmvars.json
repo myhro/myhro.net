@@ -1,0 +1,5 @@
+{
+    "myhro/dev": {
+        "DJANGO_SECRET_KEY": "caeeb09a-734f-4c89-b029-5f36d21d5a99"
+    }
+}

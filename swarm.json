@@ -1,0 +1,45 @@
+{
+    "app_name": "myhronet",
+    "services": [
+        {
+            "service_name": "web",
+            "components": [
+                {
+                    "component_name": "gunicorn",
+                    "image": "registry.giantswarm.io/myhro/myhronet-gunicorn",
+                    "ports": [8000],
+                    "domains": {
+                        "myhronet.gigantic.io": 8000
+                    },
+                    "env": {
+                        "DATABASE_URL": "postgres://postgres@postgres/myhronet",
+                        "DJANGO_SECRET_KEY": "eeb09a-734f-4c89-b029-5f36d21d5a99"
+                    },
+                    "dependencies": [
+                        {
+                            "name": "db/postgresql",
+                            "port": 5432,
+                            "alias": "postgres"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "service_name": "db",
+            "components": [
+                {
+                    "component_name": "postgresql",
+                    "image": "postgres:9.4",
+                    "ports": [5432],
+                    "volumes": [
+                        {
+                            "path": "/var/lib/postgresql/data",
+                            "size": "1 GB"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
